@@ -1,0 +1,10 @@
+
+dependencies:
+  - groupId: org.jboss.resteasy
+    artifactId: resteasy-jaxrs
+    version: 3.6.0.Final
+
+  - groupId: org.hibernate
+    artifactId: hibernate-core
+    version: 5.3.2.Final
+    
