@@ -15,7 +15,7 @@ public class Main {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         DependenciesYaml yaml = mapper.readValue(configFile, DependenciesYaml.class);
 
-        System.out.println(yaml.getDependencies().get(0).getGroupId());
+        System.out.println(yaml.getVersions().get("org.hibernate.hibernate-core"));
 
     }
 }
