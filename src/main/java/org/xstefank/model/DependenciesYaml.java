@@ -5,8 +5,17 @@ import java.util.Map;
 
 public class DependenciesYaml {
 
+    private Dependency parent;
     private Map<String, String> versions; 
     private List<Dependency> dependencies;
+
+    public Dependency getParent() {
+        return parent;
+    }
+
+    public void setParent(Dependency parent) {
+        this.parent = parent;
+    }
 
     public Map<String, String> getVersions() {
         return versions;

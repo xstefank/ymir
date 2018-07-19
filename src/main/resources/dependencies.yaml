@@ -1,4 +1,9 @@
 
+parent:
+  groupId: org.jboss
+  artifactId: jboss-parent
+  version: 26
+
 versions:
   org.hibernate.hibernate-core: 5.3.2.Final
   org.jboss.resteasy: 3.6.0.Final
