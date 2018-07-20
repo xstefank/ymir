@@ -4,12 +4,6 @@ import org.xstefank.model.DependenciesYaml;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMResult;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -19,13 +13,24 @@ public class MavenBOMGenerator {
     private PrintWriter writer;
     
     public String generate(DependenciesYaml config) {
-        Project project = new Project();
-        project.setProperties(config.getVersions());
+        BOM bom = new BOM();
+        
+        bom.setGroupId(config.getGroupId());
+        bom.setArtifactId(config.getArtifactId());
+        bom.setVersion(config.getVersion());
+        
+        bom.setName(config.getName());
+        bom.setDescription(config.getDescription());
+
+        bom.setLicenses(config.getLicenses());
+        
+        bom.setParent(config.getParent());
+        bom.setProperties(config.getVersions());
         
         JAXBContext jaxbContext = null;
         
         try {
-            jaxbContext = JAXBContext.newInstance(Project.class);
+            jaxbContext = JAXBContext.newInstance(BOM.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -34,7 +39,7 @@ public class MavenBOMGenerator {
             jaxbMarshaller.setProperty("com.sun.xml.internal.bind.xmlHeaders", "<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 
             OutputStream out = new ByteArrayOutputStream();
-            jaxbMarshaller.marshal(project, out);
+            jaxbMarshaller.marshal(bom, out);
             
             return out.toString();
         } catch (Exception e) {

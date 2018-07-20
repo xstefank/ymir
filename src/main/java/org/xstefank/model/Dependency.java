@@ -1,5 +1,8 @@
 package org.xstefank.model;
 
+import javax.xml.bind.annotation.XmlType;
+
+@XmlType(propOrder = {"groupId", "artifactId", "version"})
 public class Dependency {
     
     private String groupId;

@@ -1,4 +1,16 @@
 
+groupId: org.wildfly
+artifactId: wildfly-component-matrix
+version: 14.0.0.Beta1-SNAPSHOT
+
+name: "WildFly: Component Matrix"
+description: "WildFly: Component Matrix"
+
+licenses:
+  - name: GNU Lesser General Public License v2.1 or later
+    url: http://repository.jboss.org/licenses/lgpl-2.1.txt
+    distribution: repo
+
 parent:
   groupId: org.jboss
   artifactId: jboss-parent
