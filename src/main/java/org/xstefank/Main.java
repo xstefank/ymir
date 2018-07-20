@@ -14,7 +14,8 @@ public class Main {
         DependenciesYaml yaml = readDependenciesConfig();
         
         MavenBOMGenerator mavenBOMGenerator = new MavenBOMGenerator();
-        mavenBOMGenerator.generate(yaml, "target/bom-pom.xml");
+        String result = mavenBOMGenerator.generate(yaml);
+        System.out.println(result);
         
 
     }

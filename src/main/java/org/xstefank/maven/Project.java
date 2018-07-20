@@ -8,11 +8,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.Map;
 
-@XmlRootElement
+@XmlRootElement(namespace = "")
 public class Project {
 
-    @XmlAttribute(name = "xsi:schemaLocation", namespace="http://maven.apache.org/POM/4.0.0", required = true)
-    private String schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd";
+    @XmlAttribute
+    private String xmlns = "http://maven.apache.org/POM/4.0.0";
     
     @XmlElement
     private String modelVersion = "4.0.0";
