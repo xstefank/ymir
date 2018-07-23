@@ -13,13 +13,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import static org.xstefank.util.Utils.readDependenciesConfig;
+
 public class MavenBOMGeneratorTest {
 
     private MavenBOMGenerator generator = new MavenBOMGenerator();
     
     @Test
     public void testBOMGenerating() throws Exception {
-        DependenciesYaml config = readDependenciesConfig();
+        DependenciesYaml config = readDependenciesConfig("src/test/resources/dependencies.yaml");
 
         Path templatePath = Paths.get("src/test/resources/maven/bom-pom-sample.xml");
         String expected = new String(Files.readAllBytes(templatePath));
@@ -27,10 +29,5 @@ public class MavenBOMGeneratorTest {
         Assert.assertEquals("Generated BOM file doesn't match expected format", expected, generator.generate(config));
     }
 
-    private static DependenciesYaml readDependenciesConfig() throws IOException {
-        File configFile = new File(Main.class.getClassLoader().getResource("dependencies.yaml").getFile());
-
-        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-        return mapper.readValue(configFile, DependenciesYaml.class);
-    }
+    
 }
