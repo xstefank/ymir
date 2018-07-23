@@ -2,6 +2,8 @@ package org.xstefank.maven;
 
 import org.xstefank.maven.map.PropertiesAdapter;
 import org.xstefank.model.Dependency;
+import org.xstefank.model.DependencyManagement;
+import org.xstefank.model.GAV;
 import org.xstefank.model.License;
 
 import javax.xml.bind.annotation.XmlAttribute;
@@ -22,7 +24,7 @@ public class BOM {
     private String modelVersion = "4.0.0";
     
     @XmlElement
-    private Dependency parent;
+    private GAV parent;
     
     @XmlElement
     private String groupId;
@@ -49,6 +51,9 @@ public class BOM {
     @XmlElement
     @XmlJavaTypeAdapter(PropertiesAdapter.class)
     private Map<String, String> properties;
+    
+    @XmlElement
+    private DependencyManagement dependencyManagement;
 
     public void setGroupId(String groupId) {
         this.groupId = groupId;
@@ -62,7 +67,7 @@ public class BOM {
         this.version = version;
     }
 
-    public void setParent(Dependency parent) {
+    public void setParent(GAV parent) {
         this.parent = parent;
     }
 
@@ -80,5 +85,9 @@ public class BOM {
 
     public void setProperties(Map<String, String> properties) {
         this.properties = properties;
+    }
+
+    public void setDependencyManagement(DependencyManagement dependencyManagement) {
+        this.dependencyManagement = dependencyManagement;
     }
 }

@@ -1,35 +1,21 @@
 package org.xstefank.model;
 
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import java.util.List;
 
-@XmlType(propOrder = {"groupId", "artifactId", "version"})
-public class Dependency {
-    
-    private String groupId;
-    private String artifactId;
-    private String version;
+public class Dependency extends GAV {
 
-    public String getGroupId() {
-        return groupId;
+    @XmlElementWrapper(name = "exclusions")
+    @XmlElement(name = "exclusion")
+    private List<GA> exclusions;
+
+    public void setExclusions(List<GA> exclusions) {
+        this.exclusions = exclusions;
     }
 
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
-    }
-
-    public String getArtifactId() {
-        return artifactId;
-    }
-
-    public void setArtifactId(String artifactId) {
-        this.artifactId = artifactId;
-    }
-
-    public String getVersion() {
-        return version;
-    }
-
+    @Override
     public void setVersion(String version) {
-        this.version = version;
+        this.version = "${version." + version + "}";
     }
 }

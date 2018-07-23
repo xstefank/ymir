@@ -14,7 +14,8 @@ public class DependenciesYaml {
     
     private List<License> licenses;
     
-    private Dependency parent;
+    private GAV parent;
+    
     private Map<String, String> versions; 
     private List<Dependency> dependencies;
 
@@ -66,11 +67,11 @@ public class DependenciesYaml {
         this.licenses = licenses;
     }
 
-    public Dependency getParent() {
+    public GAV getParent() {
         return parent;
     }
 
-    public void setParent(Dependency parent) {
+    public void setParent(GAV parent) {
         this.parent = parent;
     }
 

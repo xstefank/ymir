@@ -1,6 +1,7 @@
 package org.xstefank.maven;
 
 import org.xstefank.model.DependenciesYaml;
+import org.xstefank.model.DependencyManagement;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
@@ -26,6 +27,7 @@ public class MavenBOMGenerator {
         
         bom.setParent(config.getParent());
         bom.setProperties(config.getVersions());
+        bom.setDependencyManagement(new DependencyManagement(config.getDependencies()));
         
         JAXBContext jaxbContext = null;
         
